@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+	--color-white-100: #efefef;
+	--font-inter: "Inter", serif;
+}
+html,
+body {
+	width: 100%;
+	background-color: #050822;
+	color: white;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+.close {
+	position: absolute;
+	right: 32px;
+	top: 32px;
+	width: 32px;
+	height: 32px;
+	opacity: 0.3;
+}
+.close:hover {
+	opacity: 1;
+}
+.close:before,
+.close:after {
+	position: absolute;
+	left: 15px;
+	content: " ";
+	height: 33px;
+	width: 2px;
+	background-color: #333;
+}
+.close:before {
+	transform: rotate(45deg);
+}
+.close:after {
+	transform: rotate(-45deg);
+}
