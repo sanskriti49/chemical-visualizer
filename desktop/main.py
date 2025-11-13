@@ -187,6 +187,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.setWindowTitle("Chemical Equipment Visualizer") 
+
         try:
             with open('style.qss', 'r') as f:
                 self.setStyleSheet(f.read())
