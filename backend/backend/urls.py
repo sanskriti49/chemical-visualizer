@@ -17,8 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
+def api_root(request):
+    """
+    A simple root view for the API.
+    """
+    return JsonResponse({
+        'message': 'Welcome to the Chemical Visualizer API!',
+        'endpoints': [
+            '/api/login/',
+            '/api/upload/',
+            '/api/history/',
+            '/api/datasets/<id>/',
+        ]
+    })
     
+urlpatterns = [
+    path('',api_root),
+    path('admin/', admin.site.urls),
     path('api/', include('api.urls'))
 ]
