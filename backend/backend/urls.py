@@ -6,6 +6,7 @@ def api_root(request):
     return JsonResponse({
         'message': 'Welcome to the Chemical Visualizer API!',
         'api_endpoints': {
+            'register':'/api/register/',
             'login': '/api/login/',
             'upload': '/api/upload/',
             'history': '/api/history/',
