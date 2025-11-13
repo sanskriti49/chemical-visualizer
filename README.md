@@ -1,23 +1,41 @@
 # Chemical Equipment Parameter Visualizer
 
-A hybrid application built for a screening task, demonstrating the ability to create a cohesive user experience across both a **Web (React)** and a **Desktop (PyQt5)** interface, powered by a single **Django REST API** backend.
+A full-stack, multi-user application designed to provide instant analysis and visualization of chemical equipment data. This project features a cohesive user experience across a React web app and a PyQt5 desktop app, both powered by a single Django REST API backend.
+
 This project allows users to upload CSV files containing chemical equipment data, receive an instant analysis, and visualize the results through various charts and a detailed data table.
 
 ---
 
+**Deployed Links**
+This application is live and ready for you to test. The backend is hosted on Render and the frontend on Vercel.
+		Status
+
+| Service            | Link                                    |
+| ------------------ | ----------------------------------------|
+| **Live Web App (Vercel)** | [chemical-visualizer.vercel.app](https://chemical-visualizer.vercel.app/)   |
+| **Live API (Render)** | [chemical-visualizer.onrender.com](https://chemical-visualizer.onrender.com/)     |
+
+Want to test it quickly? Feel free to register your own account, or use these demo credentials on the live web app:
+Username: demo
+Password: demo123
+(Note: To enable these credentials, you'll need to create this user on your own deployed backend via the create_admin script or the registration page.)
+
+
 ### Live Demo (Web App)
+A short video walkthrough of the web application:
 https://jumpshare.com/share/BUABdbfM5ppqQ0Tiopza
 
-<img width="1919" height="887" alt="Screenshot 2025-11-13 175311" src="https://github.com/user-attachments/assets/42cd9420-71dc-415a-aab8-303d03c80f8e" />
-<img width="1881" height="970" alt="Screenshot 2025-11-13 175354" src="https://github.com/user-attachments/assets/17c0eaf7-d674-494c-b782-12c33bbaea49" />
-<img width="1887" height="953" alt="Screenshot 2025-11-13 175418" src="https://github.com/user-attachments/assets/02ffd8f8-bbe8-4466-a990-7a11aacf0ec7" />
-<img width="1919" height="731" alt="Screenshot 2025-11-13 175432" src="https://github.com/user-attachments/assets/5ed5d952-b3d3-4a32-8134-aaffe5fdf653" />
-<img width="1916" height="951" alt="Screenshot 2025-11-13 175440" src="https://github.com/user-attachments/assets/36d0d53c-7a30-4d90-a0a2-98a1ba559aa6" />
-<img width="1910" height="819" alt="Screenshot 2025-11-13 175458" src="https://github.com/user-attachments/assets/f211767d-b5d5-48cb-bc46-11e477879986" />
+<img width="1913" height="950" alt="Screenshot 2025-11-13 222434" src="https://github.com/user-attachments/assets/942f04da-2a45-49cf-b692-3dddb91ab19b" />
+<img width="1919" height="917" alt="Screenshot 2025-11-13 222419" src="https://github.com/user-attachments/assets/65b9bc49-5a68-4a66-bc68-35b4886bdf5f" />
+<img width="1919" height="924" alt="Screenshot 2025-11-13 222410" src="https://github.com/user-attachments/assets/b446463d-72bd-4592-bb44-373399f8e76e" />
+<img width="1917" height="947" alt="Screenshot 2025-11-13 222512" src="https://github.com/user-attachments/assets/619d3637-3e13-4049-a681-981a9c5aeb31" />
+<img width="1912" height="617" alt="Screenshot 2025-11-13 222524" src="https://github.com/user-attachments/assets/7a0c6eff-126f-494a-aa25-a92e495637fd" />
+<img width="1911" height="966" alt="Screenshot 2025-11-13 222546" src="https://github.com/user-attachments/assets/113c35e0-de14-42f2-b435-9f4dee577755" />
+
 
 ### Live Demo (Desktop App)
 <img width="348" height="374" alt="Screenshot 2025-11-13 175841" src="https://github.com/user-attachments/assets/3e6b386e-1848-40c7-8852-2cfcc3bcdc82" />
-<img width="1911" height="1013" alt="Screenshot 2025-11-13 175855" src="https://github.com/user-attachments/assets/3472a0d2-50eb-4d84-85c1-6a62959dbf25" />
+<img width="1919" height="992" alt="Screenshot 2025-11-13 222808" src="https://github.com/user-attachments/assets/ca04b773-b61d-450b-9002-6d56766ac530" />
 <img width="1915" height="1003" alt="Screenshot 2025-11-13 175916" src="https://github.com/user-attachments/assets/210cf67f-20e2-4894-9da8-0a666b127b28" />
 <img width="1919" height="1047" alt="Screenshot 2025-11-13 175924" src="https://github.com/user-attachments/assets/f7f22902-4dac-44c8-a681-e94de0123ef9" />
 <img width="1919" height="1005" alt="Screenshot 2025-11-13 175933" src="https://github.com/user-attachments/assets/a0241d7e-af4f-42e2-bce7-e193fef9e663" />
@@ -26,6 +44,7 @@ https://jumpshare.com/share/BUABdbfM5ppqQ0Tiopza
 ## Key Features
 
 *   **Seamless CSV Upload:** Both web and desktop clients feature a user-friendly interface for uploading equipment data files.
+*   **User-Specific Data:** All uploaded datasets are tied to the user's account, ensuring data privacy in a multi-tenant environment.
 *   **Secure Authentication:** A token-based authentication system protects all data-related API endpoints.
 *   **In-Depth Data Analysis:** The Django backend uses Pandas to instantly calculate summary statistics, including total counts, averages (flowrate, pressure, temperature), and equipment type distribution.
 *   **Rich Data Visualization:**
@@ -43,10 +62,11 @@ https://jumpshare.com/share/BUABdbfM5ppqQ0Tiopza
 | ------------------ | ---------------------------------------- | -------------------------------------------- |
 | **Frontend (Web)** | React.js, Chart.js, Axios, TailwindCSS   | Interactive web dashboard & visualizations   |
 | **Frontend (Desktop)** | Python, PyQt5, Matplotlib, Requests  | Native desktop dashboard & visualizations    |
-| **Backend**        | Python, Django, Django REST Framework    | REST API, Authentication, PDF Generation     |
+| **Backend**        | Python, Django, Django REST Framework    | REST API, User Authentication, PDF Generation|
 | **Data Handling**  | Pandas                                   | Reading CSV & analytics                      |
 | **Database**       | SQLite                                   | Store last 5 uploaded datasets               |
 | **Version Control**| Git & GitHub                             | Collaboration & submission                   |
+| **Deployment**| Vercel (Frontend), Render (Backend & DB)      | Hosting, CI/CD, and scalability              |
 | **Sample Data**|     sample_equipment_data.csv                | Sample CSV file provided for testing & demo  |
 
 ---
@@ -67,7 +87,7 @@ Follow these steps to get the entire hybrid application running on your local ma
 git clone https://github.com/sanskriti49/chemical-visualizer.git
 cd chemical-visualizer
 ```
-### 2. Backend Setup
+### 2. Backend Setup (Terminal 1)
 The backend server is the heart of the application and must be running for either frontend to work.
 You will need two separate terminals running simultaneously for the full experience: one for the backend and one for the frontend.
 
@@ -99,7 +119,7 @@ python manage.py runserver
 ```
 Your Django API is now live at http://localhost:8000. Leave this terminal running.
 
-### 3. Frontend (Web) Setup
+### 3. Frontend (Web) Setup (Terminal 2)
 In your second terminal:
 
 ```
@@ -113,7 +133,8 @@ npm install
 npm start
 ```
 Your React web application is now live at http://localhost:3000. You can log in using the superuser credentials you created.
-4. Frontend (Desktop) Setup
+
+### 4. Frontend (Desktop) Setup (Terminal 3)
 The desktop app uses the same Python environment as the backend.
 In a new (third) terminal, or after stopping the Django server:
 
