@@ -6,8 +6,22 @@ This project allows users to upload CSV files containing chemical equipment data
 ---
 
 ### Live Demo (Web App)
+https://jumpshare.com/share/BUABdbfM5ppqQ0Tiopza
 
-https://s7.ezgif.com/tmp/ezgif-718a6e2dfa40e686.gif
+<img width="1919" height="887" alt="Screenshot 2025-11-13 175311" src="https://github.com/user-attachments/assets/42cd9420-71dc-415a-aab8-303d03c80f8e" />
+<img width="1881" height="970" alt="Screenshot 2025-11-13 175354" src="https://github.com/user-attachments/assets/17c0eaf7-d674-494c-b782-12c33bbaea49" />
+<img width="1887" height="953" alt="Screenshot 2025-11-13 175418" src="https://github.com/user-attachments/assets/02ffd8f8-bbe8-4466-a990-7a11aacf0ec7" />
+<img width="1919" height="731" alt="Screenshot 2025-11-13 175432" src="https://github.com/user-attachments/assets/5ed5d952-b3d3-4a32-8134-aaffe5fdf653" />
+<img width="1916" height="951" alt="Screenshot 2025-11-13 175440" src="https://github.com/user-attachments/assets/36d0d53c-7a30-4d90-a0a2-98a1ba559aa6" />
+<img width="1910" height="819" alt="Screenshot 2025-11-13 175458" src="https://github.com/user-attachments/assets/f211767d-b5d5-48cb-bc46-11e477879986" />
+
+### Live Demo (Desktop App)
+<img width="348" height="374" alt="Screenshot 2025-11-13 175841" src="https://github.com/user-attachments/assets/3e6b386e-1848-40c7-8852-2cfcc3bcdc82" />
+<img width="1911" height="1013" alt="Screenshot 2025-11-13 175855" src="https://github.com/user-attachments/assets/3472a0d2-50eb-4d84-85c1-6a62959dbf25" />
+<img width="1915" height="1003" alt="Screenshot 2025-11-13 175916" src="https://github.com/user-attachments/assets/210cf67f-20e2-4894-9da8-0a666b127b28" />
+<img width="1919" height="1047" alt="Screenshot 2025-11-13 175924" src="https://github.com/user-attachments/assets/f7f22902-4dac-44c8-a681-e94de0123ef9" />
+<img width="1919" height="1005" alt="Screenshot 2025-11-13 175933" src="https://github.com/user-attachments/assets/a0241d7e-af4f-42e2-bce7-e193fef9e663" />
+<img width="1912" height="987" alt="Screenshot 2025-11-13 175941" src="https://github.com/user-attachments/assets/2b0d67e7-0730-4800-a041-7f730203c06f" />
 
 ## Key Features
 
