@@ -12,13 +12,13 @@ fonttools==4.60.1
 idna==3.11
 importlib_resources==6.5.2
 kiwisolver==1.4.7
-matplotlib==3.9.4
-numpy==2.0.2
+matplotlib==3.7.1
+numpy==1.26.4
 packaging==25.0
 pandas==2.3.3
 pillow==11.3.0
 pyparsing==3.2.5
-PyQt5==5.15.9
+PyQt5==5.15.7
 pyqt5-plugins==5.15.9.2.3
 PyQt5-Qt5==5.15.2
 pyqt5-tools==5.15.9.3.3

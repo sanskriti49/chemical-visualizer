@@ -4,7 +4,7 @@ const Alerts = ({ message, type = "success", onClose }) => {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			onClose();
-		}, 5000);
+		}, 2000);
 
 		return () => clearTimeout(timer);
 	}, [onClose]);

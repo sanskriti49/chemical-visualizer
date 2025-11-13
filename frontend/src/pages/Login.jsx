@@ -92,7 +92,7 @@ const Login = ({ onLoginSuccess }) => {
 									required
 									value={username}
 									onChange={(e) => setUsername(e.target.value)}
-									className="mt-1 block w-full px-4 py-3 bg-[#050822] border border-blue-900/80 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+									className="mt-1 block w-full px-4 py-3 bg-[#050822] border border-blue-900/80 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
 									placeholder="Enter your username"
 								/>
 							</div>
@@ -109,7 +109,7 @@ const Login = ({ onLoginSuccess }) => {
 									required
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-									className="mt-1 block w-full px-4 py-3 bg-[#050822] border border-blue-900/80 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+									className="mt-1 block w-full px-4 py-3 bg-[#050822] border border-blue-900/80 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
 									placeholder="Enter your password"
 								/>
 							</div>
@@ -119,7 +119,7 @@ const Login = ({ onLoginSuccess }) => {
 							<button
 								type="submit"
 								disabled={isLoading}
-								className="cursor-pointer w-full flex justify-center py-3 px-4 text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0c1142] focus:ring-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed transition-colors"
+								className="cursor-pointer w-full flex justify-center py-3 px-4 text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-[#0c1142] focus:ring-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed transition-colors"
 							>
 								{isLoading ? (
 									<>
