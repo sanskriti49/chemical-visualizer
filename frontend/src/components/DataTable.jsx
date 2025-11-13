@@ -1,5 +1,3 @@
-import React from "react";
-
 const DataTable = ({ data }) => {
 	if (!data || data.length === 0) {
 		return <p>No data available to display.</p>;
