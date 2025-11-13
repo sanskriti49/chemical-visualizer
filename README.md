@@ -172,8 +172,9 @@ chem-visualiser/
 │   └── src/
 │       ├── components/ 
 │       ├── pages/
-│       ├── App.js
-│       └── index.js
+│       ├── api.js
+│       ├── App.jsx
+│       └── .env.production.local
 └── .gitignore       # Specifies files and folders for Git to ignore
 └── README.md        
 ```
