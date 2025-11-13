@@ -1,12 +1,12 @@
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView,UpdateAPIView
+from rest_framework.generics import CreateAPIView,ListAPIView, RetrieveAPIView,UpdateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 import pandas as pd
 from .models import DataSet
-from .serializers import DataSetSerializer,ChangePasswordSerializer
+from .serializers import DataSetSerializer,ChangePasswordSerializer,RegisterSerializer 
 
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
@@ -33,37 +33,67 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email
         })
 
-class ChangePasswordView(UpdateAPIView):
-    serializer_class=ChangePasswordSerializer
-    model=get_user_model()
-    permission_classes=(IsAuthenticated,)
+# class ChangePasswordView(UpdateAPIView):
+#     serializer_class=ChangePasswordSerializer
+#     model=get_user_model()
+#     permission_classes=(IsAuthenticated,)
     
-    def get_object(self,queryset=None):
+#     def get_object(self,queryset=None):
+#         return self.request.user
+    
+#     def update(self,request,*args,**kwargs):
+#         self.object=self.get_object()
+#         serializer=self.get_serializer(data=request.data)
+        
+#         if serializer.is_valid():
+#             if not self.object.check_password(serializer.data.get("old_password")):
+#                 return Response({"old_password":["Wrong password"]}, status=status.HTTP_400_BAD_REQUEST)
+            
+#             self.object.set_password(serializer.data.get("new_password1"))
+#             self.object.save()
+            
+#             response={
+#                 'status':'success',
+#                 'code':status.HTTP_200_OK,
+#                 'message':'Password updated successfully',
+#                 'data':[]
+#             }
+            
+#             return Response(response)     
+#         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class ChangePasswordView(UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    model = get_user_model()
+    permission_classes = (IsAuthenticated,)
+    
+    def get_object(self, queryset=None):
         return self.request.user
     
-    def update(self,request,*args,**kwargs):
-        self.object=self.get_object()
-        serializer=self.get_serializer(data=request.data)
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
         
-        if serializer.is_valid():
-            # check old password
-            if not self.object.check_password(serializer.data.get("old_password")):
-                return Response({"old_password":["Wrong password"]}, status=status.HTTP_400_BAD_REQUEST)
-            
-            # set the new password
-            self.object.set_password(serializer.data.get("new_password1"))
+        if serializer.is_valid(raise_exception=True):
+            self.object.set_password(serializer.validated_data.get("new_password1"))
             self.object.save()
             
-            response={
-                'status':'success',
-                'code':status.HTTP_200_OK,
-                'message':'Password updated successfully',
-                'data':[]
-            }
+            return Response({
+                "status": "success",
+                "code": status.HTTP_200_OK,
+                "message": "Password updated successfully"
+            }, status=status.HTTP_200_OK)
             
-            return Response(response)     
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class RegisterView(CreateAPIView):
+    """
+    View to handle user registration.
+    """
+    queryset = get_user_model().objects.all()
+    permission_classes = [AllowAny] 
+    serializer_class = RegisterSerializer    
+
 class FileUploadView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
@@ -83,9 +113,10 @@ class FileUploadView(APIView):
             }
             
             dataset = DataSet.objects.create(
-                filename=csv_file.name,
-                summary=summary,
-                original_data=df.to_dict('records')
+              user=request.user,
+              filename=csv_file.name,
+              summary=summary,
+              original_data=df.to_dict('records')
             )
             
             all_datasets = DataSet.objects.order_by('-uploaded_at')
@@ -102,8 +133,15 @@ class FileUploadView(APIView):
             return Response({"error": f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 class HistoryListView(ListAPIView):
-    queryset = DataSet.objects.all().order_by('-uploaded_at')
     serializer_class = DataSetSerializer
+    
+    def get_queryset(self):
+        """
+        This view should return a list of the last 5 datasets
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return DataSet.objects.filter(user=user).order_by('-uploaded_at')[:5]
     
 class DataSetDetailView(RetrieveAPIView):
     queryset = DataSet.objects.all()
@@ -130,7 +168,6 @@ class GeneratePdfReportView(APIView):
         summary = dataset.summary
         y_pos = height - 2*inch
         for key, value in summary.items():
-            # A more robust way to handle nested dictionaries and other types
             if key == 'equipment_type_distribution':
                  p.drawString(1.2*inch, y_pos, f"{key.replace('_', ' ').title()}:")
                  y_pos -= 0.25*inch

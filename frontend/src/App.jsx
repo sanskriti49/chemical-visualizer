@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
 import RootRedirect from "./components/RootRedirect";
 import ChangePassword from "./pages/ChangePassword";
+import SignUp from "./pages/SignUp";
 
 function App() {
 	const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
@@ -22,6 +23,8 @@ function App() {
 
 	return (
 		<Routes>
+			<Route path="/register" element={<SignUp />} />
+
 			<Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
 
 			<Route path="/" element={<RootRedirect />} />
@@ -39,7 +42,7 @@ function App() {
 				path="/change-password"
 				element={
 					<ProtectedRoute>
-						<ChangePassword />
+						<ChangePassword onLogout={handleLogout} />
 					</ProtectedRoute>
 				}
 			/>

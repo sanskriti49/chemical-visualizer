@@ -26,7 +26,7 @@ const Spinner = () => (
 	</svg>
 );
 
-const ChangePassword = () => {
+const ChangePassword = ({ onLogout }) => {
 	const navigate = useNavigate();
 	const [oldPassword, setOldPassword] = useState("");
 	const [newPassword1, setNewPassword1] = useState("");
@@ -53,15 +53,17 @@ const ChangePassword = () => {
 				new_password1: newPassword1,
 				new_password2: newPassword2,
 			});
-			setSuccessMessage("Password updated successfully!");
-
+			setSuccessMessage(
+				"Password updated successfully! You will be logged out to sign in again."
+			);
 			setOldPassword("");
 			setNewPassword1("");
 			setNewPassword2("");
 
 			setTimeout(() => {
-				navigate("/dashboard");
-			}, 1500);
+				onLogout();
+				navigate("/login");
+			}, 2000);
 		} catch (err) {
 			const errorData = err.response?.data;
 			if (errorData) {
@@ -133,7 +135,7 @@ const ChangePassword = () => {
 
 					<button
 						type="submit"
-						disabled={isLoading}
+						disabled={isLoading || successMessage}
 						className="cursor-pointer w-full flex justify-center py-3 px-4 text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800"
 					>
 						{isLoading ? <Spinner /> : "Update Password"}
@@ -141,13 +143,15 @@ const ChangePassword = () => {
 				</form>
 
 				<div className="mt-6 text-center">
-					<Link
-						to="/dashboard"
-						className="text-sm text-blue-400 hover:text-blue-300 flex items-center justify-center space-x-2"
-					>
-						<ArrowLeft size={16} />
-						<span>Back to Dashboard</span>
-					</Link>
+					{!successMessage && (
+						<Link
+							to="/dashboard"
+							className="text-sm text-blue-400 hover:text-blue-300 flex items-center justify-center space-x-2"
+						>
+							<ArrowLeft size={16} />
+							<span>Back to Dashboard</span>
+						</Link>
+					)}
 				</div>
 			</div>
 		</div>

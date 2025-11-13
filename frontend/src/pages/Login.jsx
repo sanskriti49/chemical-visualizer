@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ExperimentIcon from "../assets/icons/experiment.svg?react";
+import { Link } from "react-router-dom";
 
 const Spinner = () => (
 	<svg
@@ -112,6 +113,15 @@ const Login = ({ onLoginSuccess }) => {
 									className="mt-1 block w-full px-4 py-3 bg-[#050822] border border-blue-900/80 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
 									placeholder="Enter your password"
 								/>
+							</div>
+							<div className="text-sm text-center">
+								<span className="text-gray-400">New account? </span>
+								<Link
+									to="/register"
+									className="font-medium text-blue-400 hover:text-blue-300"
+								>
+									Sign Up!
+								</Link>
 							</div>
 						</div>
 

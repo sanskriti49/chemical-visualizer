@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut, Settings, FlaskConical } from "lucide-react";
 import apiClient from "../api";
@@ -14,6 +14,7 @@ import HistoryPanel from "../components/HistoryPanel";
 
 const Dashboard = ({ onLogout }) => {
 	const navigate = useNavigate();
+	const historyPanelRef = useRef(null);
 
 	const [currentDataSet, setCurrentDataSet] = useState(null);
 	const [alert, setAlert] = useState(null);
@@ -30,6 +31,9 @@ const Dashboard = ({ onLogout }) => {
 			message: "File uploaded and analyzed successfully",
 			type: "success",
 		});
+		if (historyPanelRef.current) {
+			historyPanelRef.current.refresh();
+		}
 	};
 
 	const handleUploadError = (errorMessage) => {
@@ -42,6 +46,10 @@ const Dashboard = ({ onLogout }) => {
 		try {
 			const response = await apiClient.get(`/datasets/${datasetId}/`);
 			setCurrentDataSet(response.data);
+			setAlert({
+				message: `Successfully loaded '${response.data.filename}' from history.`,
+				type: "success",
+			});
 		} catch (err) {
 			setAlert({ message: "Failed to load dataset.", type: "error" });
 			console.error(err);
@@ -110,7 +118,7 @@ const Dashboard = ({ onLogout }) => {
 						onUploadSuccess={handleUploadSuccess}
 						onUploadError={handleUploadError}
 					/>
-					<HistoryPanel onSelect={handleHistorySelect} />
+					<HistoryPanel ref={historyPanelRef} onSelect={handleHistorySelect} />
 				</aside>
 
 				<section className="md:col-span-3">

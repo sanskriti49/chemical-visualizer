@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import FileUploadView,HistoryListView,DataSetDetailView,CustomAuthToken,GeneratePdfReportView,ChangePasswordView
+from .views import FileUploadView,HistoryListView,DataSetDetailView,CustomAuthToken,GeneratePdfReportView,ChangePasswordView,RegisterView
 
 urlpatterns = [
     # localhost:8000/api/upload/
+    path('register/', RegisterView.as_view(), name='user-register'),
+
     path('login/',CustomAuthToken.as_view(),name='api-login'),
     path('change-password/',ChangePasswordView.as_view(),name='change-password'),
     path('upload/',FileUploadView.as_view(),name='file-upload'),

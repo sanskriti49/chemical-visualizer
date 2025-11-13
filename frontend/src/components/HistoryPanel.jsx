@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import apiClient from "../api";
 
-const HistoryPanel = ({ onSelect }) => {
+const HistoryPanel = forwardRef(({ onSelect }, ref) => {
 	const [history, setHistory] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -20,6 +20,10 @@ const HistoryPanel = ({ onSelect }) => {
 			setIsLoading(false);
 		}
 	};
+
+	useImperativeHandle(ref, () => ({
+		refresh: fetchHistory,
+	}));
 
 	useEffect(() => {
 		fetchHistory();
@@ -64,6 +68,6 @@ const HistoryPanel = ({ onSelect }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default HistoryPanel;
