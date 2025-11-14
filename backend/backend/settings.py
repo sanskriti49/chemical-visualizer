@@ -147,8 +147,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
     "http://localhost:5173",
     "https://chemical-visualizer.vercel.app", 
+    "https://chemical-visualizer-git-main-sanskriti49s-projects.vercel.app",
 ]
 
+ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME] if RENDER_EXTERNAL_HOSTNAME else []
+# You can add 'localhost' for local development if needed
+if DEBUG:
+    ALLOWED_HOSTS.append('localhost')
+    ALLOWED_HOSTS.append('127.0.0.1')
+    
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
