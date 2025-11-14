@@ -143,11 +143,19 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", 
-    "http://localhost:5173",
-    "https://chemical-visualizer.vercel.app", 
-    "https://chemical-visualizer-git-main-sanskriti49s-projects.vercel.app",
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000", 
+#     "http://localhost:5173",
+#     "https://chemical-visualizer.vercel.app", 
+#     "https://chemical-visualizer-git-main-sanskriti49s-projects.vercel.app",
+# ]
+
+# This setting allows your main domain AND all preview domains like "...f41z8q29q..."
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://chemical-visualizer-.*\.vercel\.app$",
+    r"^https://chemical-visualizer\.vercel\.app$",
+    r"^http://localhost:5173$",
+    r"^http://localhost:3000$",
 ]
 
 ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME] if RENDER_EXTERNAL_HOSTNAME else []
